@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>
+        Banking Customer Intent Analysis
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="/static/style.css"
+    >
+
+</head>
+
+
+<body>
+
+
+<!-- ================= HERO ================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="badge">
+            ✦ AI-POWERED NLP
+        </div>
+
+        <h1>
+            Banking Customer
+            <br>
+            <span>Intent Analysis</span>
+        </h1>
+
+        <p>
+
+            Understand banking customer queries using
+            Natural Language Processing and Deep Learning.
+            Classify queries into 77 different banking intents.
+
+        </p>
+
+        <div class="features">
+
+            <span>⚡ Fast Prediction</span>
+
+            <span>◉ Deep Learning</span>
+
+            <span>✦ 77 Intents</span>
+
+        </div>
+
+    </div>
+
+
+    <div class="hero-graphic">
+
+        <div class="ai-circle">
+            AI
+        </div>
+
+        <div class="intent-box">
+
+            <div>
+                pending_transfer
+            </div>
+
+            <div>
+                card_payment_fee
+            </div>
+
+            <div>
+                cash_withdrawal
+            </div>
+
+            <div>
+                balance_not_updated
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= PREDICTION ================= -->
+
+<section class="prediction-section">
+
+    <div class="prediction-card">
+
+
+        <!-- QUERY -->
+
+        <div class="query-area">
+
+            <h2>
+                Analyze Customer Query
+            </h2>
+
+            <p class="subtext">
+
+                Enter a banking-related question and let
+                the Deep Learning model identify its intent.
+
+            </p>
+
+
+            <form id="predictionForm">
+
+
+                <textarea
+                    id="query"
+                    placeholder="Example: Why is my transfer pending?"
+                    maxlength="500"
+                    required
+                ></textarea>
+
+
+                <div class="examples">
+
+                    <span>
+                        Try example:
+                    </span>
+
+
+                    <button
+                        type="button"
+                        onclick="setQuery('Why is my transfer pending?')"
+                    >
+                        Transfer pending
+                    </button>
+
+
+                    <button
+                        type="button"
+                        onclick="setQuery('What is my account balance?')"
+                    >
+                        Account balance
+                    </button>
+
+
+                    <button
+                        type="button"
+                        onclick="setQuery('I cannot withdraw money from the ATM')"
+                    >
+                        ATM problem
+                    </button>
+
+                </div>
+
+
+                <button
+                    class="analyze-btn"
+                    type="submit"
+                >
+
+                    Analyze Customer Query →
+
+                </button>
+
+            </form>
+
+        </div>
+
+
+
+        <!-- RESULT -->
+
+        <div class="result-area">
+
+            <div class="result-header">
+
+                <span>✦</span>
+
+                <h2>
+                    Prediction Result
+                </h2>
+
+            </div>
+
+
+            <div class="result-box">
+
+                <p class="result-label">
+                    PREDICTED INTENT
+                </p>
+
+
+                <h3 id="intent">
+                    —
+                </h3>
+
+
+                <div class="confidence-row">
+
+                    <span>
+                        Confidence
+                    </span>
+
+                    <strong id="confidence">
+                        —
+                    </strong>
+
+                </div>
+
+
+                <div class="progress">
+
+                    <div
+                        id="progressBar"
+                    ></div>
+
+                </div>
+
+
+                <p
+                    id="message"
+                    class="result-message"
+                >
+
+                    Enter a customer query to get
+                    a prediction.
+
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= ABOUT ================= -->
+
+<section class="about">
+
+
+    <div class="about-heading">
+
+        <div class="line"></div>
+
+        <h2>
+            About the Project
+        </h2>
+
+        <p>
+
+            An NLP and Deep Learning based banking
+            intent classification system built using
+            the BANKING77 dataset.
+
+        </p>
+
+    </div>
+
+
+
+    <div class="cards">
+
+
+        <div class="info-card">
+
+            <div class="icon">
+                ◌
+            </div>
+
+            <h3>
+                NLP
+            </h3>
+
+            <p>
+
+                Text preprocessing, tokenization and
+                sequence-based text classification.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="info-card">
+
+            <div class="icon">
+                ✦
+            </div>
+
+            <h3>
+                Deep Learning
+            </h3>
+
+            <p>
+
+                LSTM, GRU, BiLSTM and Transformer models
+                for intent classification.
+
+            </p>
+
+        </div>
+
+
+
+        <div class="info-card">
+
+            <div class="icon">
+                77
+            </div>
+
+            <h3>
+                Banking Intents
+            </h3>
+
+            <p>
+
+                Covers 77 different customer banking
+                queries from the BANKING77 dataset.
+
+            </p>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- ================= FOOTER ================= -->
+
+<footer>
+
+    Banking Customer Intent Analysis
+
+    <span>•</span>
+
+    NLP & Deep Learning
+
+</footer>
+
+
+
+<script>
+
+
+function setQuery(text) {
+
+    document.getElementById("query").value = text;
+
+}
+
+
+
+document
+    .getElementById("predictionForm")
+    .addEventListener(
+        "submit",
+        async function(event) {
+
+            event.preventDefault();
+
+
+            const query =
+                document
+                .getElementById("query")
+                .value
+                .trim();
+
+
+            if (!query) {
+
+                return;
+
+            }
+
+
+            const intentElement =
+                document.getElementById("intent");
+
+            const confidenceElement =
+                document.getElementById("confidence");
+
+            const progressBar =
+                document.getElementById("progressBar");
+
+            const message =
+                document.getElementById("message");
+
+
+            intentElement.textContent =
+                "Analyzing...";
+
+            confidenceElement.textContent =
+                "—";
+
+            progressBar.style.width =
+                "0%";
+
+            message.textContent =
+                "Model is analyzing your query...";
+
+
+            try {
+
+
+                const response =
+                    await fetch(
+                        "/predict",
+                        {
+
+                            method: "POST",
+
+                            headers: {
+                                "Content-Type":
+                                    "application/json"
+                            },
+
+                            body: JSON.stringify({
+                                text: query
+                            })
+
+                        }
+                    );
+
+
+                const data =
+                    await response.json();
+
+
+                if (!response.ok) {
+
+                    throw new Error(
+                        data.detail ||
+                        "Prediction failed"
+                    );
+
+                }
+
+
+                if (data.error) {
+
+                    throw new Error(
+                        data.error
+                    );
+
+                }
+
+
+                const confidence =
+                    data.confidence * 100;
+
+
+                intentElement.textContent =
+                    data.intent;
+
+
+                confidenceElement.textContent =
+                    confidence.toFixed(2) + "%";
+
+
+                progressBar.style.width =
+                    confidence + "%";
+
+
+                message.textContent =
+                    "The model identified this query as "
+                    + data.intent
+                    + ".";
+
+
+            }
+
+
+            catch (error) {
+
+
+                intentElement.textContent =
+                    "Error";
+
+
+                confidenceElement.textContent =
+                    "—";
+
+
+                progressBar.style.width =
+                    "0%";
+
+
+                message.textContent =
+                    error.message;
+
+            }
+
+        }
+    );
+
+</script>
+
+
+</body>
+
+</html>
